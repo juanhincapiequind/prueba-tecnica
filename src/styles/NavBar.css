@@ -1,0 +1,33 @@
+.search-button {
+  border-radius: 1em;
+  border-color: lightgray;
+  border-width: 0;
+  width: 70%;
+  max-width: 300px;
+}
+
+.screen-space {
+  flex-grow: 1;
+}
+
+.navbar-color {
+  display: absolute;
+  background-color: #3468C0;
+  height: 3em;
+
+  margin: 0;
+  padding: 0 1em;
+}
+
+.option-buttons {
+  list-style-type: none; 
+  margin: 0; 
+  padding: 0; 
+  color: #fff;
+}
+
+.option-buttons li {
+  display: inline-block; 
+  margin-right: 10px; 
+}
+
