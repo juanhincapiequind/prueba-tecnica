@@ -1,8 +1,7 @@
 import React from "react";
 import NavBar from "./page/NavBar";
-
-import LandingPage from "./page/LandingPage";
-import { places } from "./models/PlacesModel";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from "./page/Home";
 
 const App: React.FC = () => {
   const handleSearch = (query : string) => {
@@ -14,7 +13,7 @@ const App: React.FC = () => {
       <NavBar onSearch={handleSearch}/>
     </header>
     <body>
-      <LandingPage places={places}/>
+      <Home/>
     </body>
     </React.Fragment>
   );

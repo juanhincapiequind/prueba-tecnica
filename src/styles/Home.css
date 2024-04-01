@@ -1,0 +1,47 @@
+.image-modal {
+    max-width: 100%;
+    max-height: calc(100vh - 500px);
+    margin: 0 auto;
+    display: block
+}
+
+.modal-distribution .modal-dialog {
+    max-width: 70%;
+
+}
+
+.page-title {
+    text-align: center;
+}
+
+.modal-header{
+    background-color: #FF9843;
+    color: #fff
+}
+
+.modal-body {
+    background-color: lightgrey;
+}
+
+.table-titles{
+    background-color: #3468C0;
+    color:#fff;
+}
+
+.modal-footer{
+    background-color: #FF9843;
+    color: #fff
+}
+
+.button-style{
+    background-color: #3468C0;
+    border-color: transparent;
+    color: #fff;
+
+}
+
+.general-button {
+    background-color: #86A7FC;
+    color: #fff;
+    border-color: transparent;
+  }

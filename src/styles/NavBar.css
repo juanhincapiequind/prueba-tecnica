@@ -12,7 +12,7 @@
 
 .navbar-color {
   display: flex;
-  background-color: #86a7fc;
+  background-color: #3468C0;
   height: 3em;
   width: 100%;
   margin: 0;
@@ -23,10 +23,11 @@
   list-style-type: none; 
   margin: 0; 
   padding: 0; 
-  color: lightgray;
+  color: #fff;
 }
 
 .option-buttons li {
   display: inline-block; 
   margin-right: 10px; 
 }
+
