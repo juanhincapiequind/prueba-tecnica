@@ -39,7 +39,7 @@ function Home() {
 
   return (
     <React.Fragment>
-      <h1 className="page-title">Bienvenidos a Alquilam Esta</h1><br/>
+      <h1 className="page-title">Bienvenidos</h1><br/>
       <Row>
         <Col md={6}>
           <Form.Control
