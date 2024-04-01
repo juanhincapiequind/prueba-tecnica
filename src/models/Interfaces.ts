@@ -22,3 +22,8 @@ export interface Accommodation {
   image_url: string;
 }
 
+export interface Reservation {
+  startDate: string;
+  endDate: string;
+  reservedPlace: string;
+}

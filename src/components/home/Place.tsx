@@ -1,15 +1,26 @@
 import React, { useState } from "react";
-import { Accommodation } from "../../models/Interfaces";
 import { Button, Card, Image, Modal, Table } from "react-bootstrap";
 import LazyLoad from "react-lazyload";
 import "../../styles/Home.css";
+import ReservationForm from "./ReservationForm";
+import { Accommodation, Reservation } from "../../models/Interfaces";
 
 interface PlaceProps {
   place: Accommodation;
+  onReserve: (newReservation : Reservation) => void;
 }
 
-const Place: React.FC<PlaceProps> = ({ place }) => {
+
+const Place: React.FC<PlaceProps> = ({ place, onReserve }) => {
   const [showModal, setShowModal] = useState(false);
+  const [showReservationModal, setShowReservationModal] = useState(false);
+  const [selectedPlace, setSelectedPlace] = useState<Accommodation | null>(null);
+  const [reservation, setReservation] = useState<Reservation[]>([]) 
+
+  const handleReserveClick = (place: Accommodation) => {
+    setSelectedPlace(place);
+    setShowReservationModal(true);
+  };
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -18,6 +29,7 @@ const Place: React.FC<PlaceProps> = ({ place }) => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
   return (
     <React.Fragment>
       <Card>
@@ -27,13 +39,15 @@ const Place: React.FC<PlaceProps> = ({ place }) => {
         <Card.Body>
           <Card.Title>{place.name}</Card.Title>
           <Card.Text>{place.location}</Card.Text>
-          <Button onClick={handleShowModal} className="general-button">Más información</Button>
+          <Button onClick={handleShowModal} className="general-button">
+            Más información
+          </Button>
         </Card.Body>
       </Card>
       <Modal
         show={showModal}
         onHide={handleCloseModal}
-        className="modal-distribution "
+        className="modal-distribution"
       >
         <Modal.Header closeButton className="modal-header">
           <Modal.Title>{place.name}</Modal.Title>
@@ -41,7 +55,7 @@ const Place: React.FC<PlaceProps> = ({ place }) => {
         <Modal.Body className="modal-body modal-content">
           <Image src={place.image_url} className="image-modal" />
           <br />
-          <Table >
+          <Table>
             <thead className="table-titles">
               <tr>
                 <th>Ubicación</th>
@@ -65,15 +79,39 @@ const Place: React.FC<PlaceProps> = ({ place }) => {
                 <td>{place.name}</td>
                 <td>{place.property_type}</td>
                 <td>{place.price_per_night + " $USD"}</td>
-                <td><Button>Reservar</Button></td>
+                <td>
+                  <Button onClick={() => handleReserveClick(place)}>
+                    Reservar
+                  </Button>
+                </td>
               </tr>
             </tbody>
           </Table>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={handleCloseModal} className="button-style">Cerrar</Button>
+          <Button onClick={handleCloseModal} className="button-style">
+            Cerrar
+          </Button>
         </Modal.Footer>
       </Modal>
+
+      {showReservationModal && (
+        <ReservationForm
+          onClose={() => setShowReservationModal(false)}          
+          onReserve={(startDate, endDate) => {
+            const newReservation: Reservation = {
+              startDate,
+              endDate,
+              reservedPlace: selectedPlace?.name || ""
+            };
+            onReserve(newReservation)            
+            setShowReservationModal(false);
+            alert(
+              `Reservación para ${selectedPlace?.name} elaborada correctamente para la fecha ${startDate} hasta ${endDate}`
+            );
+          }}
+        />
+      )}
     </React.Fragment>
   );
 };
